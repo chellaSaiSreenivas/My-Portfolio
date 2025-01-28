@@ -41,17 +41,16 @@
             --primary-color: #3a3a3a;
         }
 
-        /* Dark mode specific styles */
         [data-theme="dark"] .skill-card,
         [data-theme="dark"] .education-item,
         [data-theme="dark"] .project-card,
         [data-theme="dark"] .certification-card,
+        [data-theme="dark"] .achievement-card,
         [data-theme="dark"] .hobby-item {
             background-color: var(--dark-card-bg);
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
             bottom: 30px;
@@ -74,7 +73,6 @@
             transform: rotate(180deg) scale(1.1);
         }
 
-        /* Scroll to Top Button */
         .scroll-top {
             position: fixed;
             bottom: 90px;
@@ -97,15 +95,36 @@
             display: flex;
         }
 
-        /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary-color), #1A2E35);
+            background: 
+                linear-gradient(135deg, var(--primary-color), #1A2E35),
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255,255,255,0.1) 0px,
+                    rgba(255,255,255,0.1) 20px,
+                    transparent 20px,
+                    transparent 40px
+                );
             color: white;
             text-align: center;
             padding: 6rem 0 4rem;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             position: relative;
             overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><text x="50%" y="50%" fill="rgba(255,255,255,0.05)" font-size="40" dominant-baseline="middle" text-anchor="middle">▧</text></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><text x="50%" y="50%" fill="rgba(255,255,255,0.05)" font-size="40" dominant-baseline="middle" text-anchor="middle">◈</text></svg>');
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .contact-bar {
@@ -129,7 +148,6 @@
             transform: translateY(-3px);
         }
 
-        /* Education Timeline */
         .education-timeline {
             position: relative;
             max-width: 800px;
@@ -173,10 +191,9 @@
             background: var(--accent-color);
         }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
         }
 
@@ -195,7 +212,6 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
-        /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -210,14 +226,13 @@
             transition: transform 0.3s ease;
             position: relative;
             padding: 1.5rem;
-            margin: 0.5rem
+            margin: 0.5rem;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
         }
 
-        /* Certifications Grid */
         .certification-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -237,7 +252,40 @@
             transform: scale(1.03);
         }
 
-        /* Hobbies Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
         .hobbies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -260,7 +308,6 @@
             color: white;
         }
 
-        /* Animation Styles */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -281,7 +328,6 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        /* Section Common Styles */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -320,12 +366,10 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-moon"></i>
     </button>
 
-    <!-- Scroll to Top Button -->
     <button class="scroll-top" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -349,7 +393,6 @@
     </header>
 
     <main>
-        <!-- Career Objective -->
         <section class="animate">
             <div class="container">
                 <h2 class="section-title">Career Objective</h2>
@@ -359,7 +402,6 @@
             </div>
         </section>
 
-        <!-- Education -->
         <section style="background: var(--light-bg);">
             <div class="container animate">
                 <h2 class="section-title">Education</h2>
@@ -386,7 +428,6 @@
             </div>
         </section>
 
-        <!-- Technical Skills -->
         <section>
             <div class="container animate">
                 <h2 class="section-title">Technical Skills</h2>
@@ -406,11 +447,15 @@
                         <h3>Web Development</h3>
                         <p>HTML, CSS, JavaScript</p>
                     </div>
+                    <div class="skill-card">
+                        <i class="fas fa-robot fa-3x"></i>
+                        <h3>AI Tools</h3>
+                        <p>ChatGPT, Canva</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications -->
         <section style="background: var(--light-bg);">
             <div class="container animate">
                 <h2 class="section-title">Certifications</h2>
@@ -429,7 +474,27 @@
             </div>
         </section>
 
-        <!-- Projects -->
+        <!-- New Achievements Section -->
+        <section>
+            <div class="container animate">
+                <h2 class="section-title">Achievements</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="ribbon">Winner</div>
+                        <h3>Code Debugging</h3>
+                        <p>Merit Certificate, MRU Sparks – Intelligentia</p>
+                        <i class="fas fa-trophy" style="color: var(--accent-color); margin-top: 1rem;"></i>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="ribbon">Top 2</div>
+                        <h3>UI Frontend Hackathon</h3>
+                        <p>Developed award-winning responsive UI design</p>
+                        <i class="fas fa-medal" style="color: var(--accent-color); margin-top: 1rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section>
             <div class="container animate">
                 <h2 class="section-title">Projects</h2>
@@ -460,7 +525,6 @@
             </div>
         </section>
 
-        <!-- Hobbies -->
         <section style="background: var(--light-bg);">
             <div class="container animate">
                 <h2 class="section-title">Hobbies</h2>
@@ -490,7 +554,6 @@
     </footer>
 
     <script>
-        // Theme Toggle Functionality
         function toggleTheme() {
             const html = document.documentElement;
             const themeToggle = document.querySelector('.theme-toggle i');
@@ -506,7 +569,6 @@
             }
         }
 
-        // Scroll to Top Functionality
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -514,7 +576,6 @@
             });
         }
 
-        // Show/Hide Scroll to Top Button
         window.addEventListener('scroll', () => {
             const scrollTopBtn = document.querySelector('.scroll-top');
             if (window.scrollY > 500) {
@@ -524,7 +585,6 @@
             }
         });
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         const themeToggle = document.querySelector('.theme-toggle i');
@@ -532,7 +592,6 @@
             themeToggle.classList.replace('fa-moon', 'fa-sun');
         }
 
-        // Enhanced Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -544,11 +603,10 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section, header, footer, .skill-card').forEach((el) => {
+        document.querySelectorAll('section, header, footer, .skill-card, .achievement-card').forEach((el) => {
             observer.observe(el);
         });
 
-        // Add click effect to skill cards
         document.querySelectorAll('.skill-card').forEach(card => {
             card.addEventListener('click', () => {
                 card.style.transform = 'scale(0.95)';
