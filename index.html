@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,9 @@
             --accent-color: #4ECDC4;
             --text-color: #2D2D2D;
             --light-bg: #F7FFF7;
+            --dark-bg: #1a1a1a;
+            --dark-text: #ffffff;
+            --dark-card-bg: #2d2d2d;
         }
 
         * {
@@ -19,6 +22,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         html {
@@ -29,6 +33,68 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--light-bg);
+        }
+
+        [data-theme="dark"] {
+            --text-color: var(--dark-text);
+            --light-bg: var(--dark-bg);
+            --primary-color: #3a3a3a;
+        }
+
+        /* Dark mode specific styles */
+        [data-theme="dark"] .skill-card,
+        [data-theme="dark"] .education-item,
+        [data-theme="dark"] .project-card,
+        [data-theme="dark"] .certification-card,
+        [data-theme="dark"] .hobby-item {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border: none;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border: none;
+        }
+
+        .scroll-top.show {
+            display: flex;
         }
 
         /* Header Styles */
@@ -55,6 +121,8 @@
             align-items: center;
             gap: 0.5rem;
             transition: transform 0.3s ease;
+            color: white;
+            text-decoration: none;
         }
 
         .contact-item:hover {
@@ -119,6 +187,7 @@
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
 
         .skill-card:hover {
@@ -200,6 +269,11 @@
             }
         }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .animate {
             animation: fadeInUp 0.6s ease forwards;
         }
@@ -243,10 +317,20 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <header>
         <div class="container animate">
             <h1>Chella Sai Sreenivas</h1>
-            <p class="subtitle">Full Stack Developer & Cloud Enthusiast</p>
+            <p class="subtitle">Cloud Enthusiast</p>
             <div class="contact-bar">
                 <a href="tel:+919059296197" class="contact-item">
                     <i class="fas fa-phone"></i> +91 9059296197
@@ -254,7 +338,7 @@
                 <a href="mailto:saisreenivas14@gmail.com" class="contact-item">
                     <i class="fas fa-envelope"></i> Email
                 </a>
-                <a href="https://github.com/chellaSaiSreenivas" class="contact-item">
+                <a href="hhttps://github.com/chellaSaiSreenivas" class="contact-item">
                     <i class="fab fa-github"></i> GitHub
                 </a>
             </div>
@@ -307,12 +391,12 @@
                     <div class="skill-card">
                         <i class="fab fa-python fa-3x"></i>
                         <h3>Python</h3>
-                        <p>Advanced Programming</p>
+                        <p>Programming</p>
                     </div>
                     <div class="skill-card">
                         <i class="fab fa-aws fa-3x"></i>
                         <h3>AWS Cloud</h3>
-                        <p>Cloud Architecture</p>
+                        <p>Cloud Technology</p>
                     </div>
                     <div class="skill-card">
                         <i class="fas fa-code fa-3x"></i>
@@ -403,26 +487,71 @@
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (html.getAttribute('data-theme') === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeToggle.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/Hide Scroll to Top Button
+        window.addEventListener('scroll', () => {
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const themeToggle = document.querySelector('.theme-toggle i');
+        if (savedTheme === 'dark') {
+            themeToggle.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // Enhanced Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+                    if (entry.target.classList.contains('skill-card')) {
+                        entry.target.style.animation = 'bounce 0.6s ease';
+                    }
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section, header, footer').forEach((el) => {
+        document.querySelectorAll('section, header, footer, .skill-card').forEach((el) => {
             observer.observe(el);
         });
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Add click effect to skill cards
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 200);
             });
         });
     </script>
