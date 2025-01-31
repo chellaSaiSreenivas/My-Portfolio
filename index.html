@@ -50,6 +50,7 @@
             background-color: var(--dark-card-bg);
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
+        
 
         .theme-toggle {
             position: fixed;
@@ -126,7 +127,6 @@
             opacity: 0.1;
             z-index: 0;
         }
-
         .contact-bar {
             display: flex;
             justify-content: center;
@@ -139,13 +139,26 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.3s ease;
             color: white;
             text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .contact-item:hover {
             transform: translateY(-3px);
+            background-color: rgba(78, 205, 196, 0.3);
+            color: #4ECDC4;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+
+        .contact-item span {
+            font-size: 1rem;
         }
 
         .education-timeline {
@@ -380,13 +393,13 @@
             <p class="subtitle">Cloud Enthusiast</p>
             <div class="contact-bar">
                 <a href="tel:+919059296197" class="contact-item">
-                    <i class="fas fa-phone"></i> +91 9059296197
+                    <i class="fas fa-phone"></i> <span>+91 9059296197</span>
                 </a>
                 <a href="mailto:saisreenivas14@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i> Email
+                    <i class="fas fa-envelope"></i> <span>saisreenivas14@gmail.com</span>
                 </a>
-                <a href="https://github.com/chellaSaiSreenivas" class="contact-item">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/chellaSaiSreenivas"target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i> <span>GitHub</span>
                 </a>
             </div>
         </div>
