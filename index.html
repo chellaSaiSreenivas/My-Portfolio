@@ -95,71 +95,119 @@
         .scroll-top.show {
             display: flex;
         }
+        
+/* Header Styles */
+.headr-style {
+    background: linear-gradient(135deg, #2A4450, #1A2E35);
+    color: white;
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 
-        header {
-            background: 
-                linear-gradient(135deg, var(--primary-color), #1A2E35),
-                repeating-linear-gradient(
-                    45deg,
-                    rgba(255,255,255,0.1) 0px,
-                    rgba(255,255,255,0.1) 20px,
-                    transparent 20px,
-                    transparent 40px
-                );
-            color: white;
-            text-align: center;
-            padding: 6rem 0 4rem;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-            position: relative;
-            overflow: hidden;
-        }
+.headr-style::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%);
+    background-size: 4px 4px;
+    z-index: 1;
+}
 
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><text x="50%" y="50%" fill="rgba(255,255,255,0.05)" font-size="40" dominant-baseline="middle" text-anchor="middle">▧</text></svg>'),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><text x="50%" y="50%" fill="rgba(255,255,255,0.05)" font-size="40" dominant-baseline="middle" text-anchor="middle">◈</text></svg>');
-            opacity: 0.1;
-            z-index: 0;
-        }
-        .contact-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem auto;
-            flex-wrap: wrap;
-        }
+.headr-style .container {
+    position: relative;
+    z-index: 2;
+}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+.headr-style h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
 
-        .contact-item:hover {
-            transform: translateY(-3px);
-            background-color: rgba(78, 205, 196, 0.3);
-            color: #4ECDC4;
-        }
+.headr-style .subtitle {
+    font-size: 1.5rem;
+    color: #4ECDC4;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 0.5px;
+}
 
-        .contact-item i {
-            font-size: 1.2rem;
-        }
+/* Contact Bar Styles */
+.contact-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
 
-        .contact-item span {
-            font-size: 1rem;
-        }
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.contact-item:hover i {
+    transform: scale(1.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .headr-style {
+        padding: 4rem 0 3rem;
+    }
+    
+    .headr-style h1 {
+        font-size: 2.25rem;
+    }
+    
+    .headr-style .subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .contact-item {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-bar {
+        gap: 1rem;
+    }
+    
+    .contact-item {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+}
 
         .education-timeline {
             position: relative;
@@ -387,25 +435,28 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <header>
-        <div class="container animate">
-            <h1>Chella Sai Sreenivas</h1>
-            <p class="subtitle">Cloud Enthusiast</p>
+    <div class="headr-style">
+        <div class="container">
+            <h1><center>Chella Sai Sreenivas</center></h1>
+            <h2 class="subtitle"><center>Cloud Enthusiast</center></h2>
             <div class="contact-bar">
                 <a href="tel:+919059296197" class="contact-item">
-                    <i class="fas fa-phone"></i> <span>+91 9059296197</span>
+                    <i class="fas fa-phone"></i> +91 9059296197
                 </a>
                 <a href="mailto:saisreenivas14@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i> <span>saisreenivas14@gmail.com</span>
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://github.com/chellaSaiSreenivas" 
+                   class="contact-item" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>GitHub
                 </a>
                 
-                <a href="https://github.com/chellaSaiSreenivas" target="_blank" class="contact-item">
-                    <i class="fab fa-github"></i> <span>GitHub</span>
-                </a>
                 
             </div>
         </div>
-    </header>
+    </div>
 
     <main>
         <section class="animate">
@@ -495,13 +546,13 @@
                 <h2 class="section-title">Achievements</h2>
                 <div class="achievements-grid">
                     <div class="achievement-card">
-                        <div class="ribbon">Winner</div>
+                        <div class="ribbon">  Winner</div>
                         <h3>Code Debugging</h3>
                         <p>Merit Certificate, MRU Sparks – Intelligentia</p>
                         <i class="fas fa-trophy" style="color: var(--accent-color); margin-top: 1rem;"></i>
                     </div>
                     <div class="achievement-card">
-                        <div class="ribbon">Top 2</div>
+                        <div class="ribbon">  Top 2</div>
                         <h3>UI Frontend Hackathon</h3>
                         <p>Developed award-winning responsive UI design</p>
                         <i class="fas fa-medal" style="color: var(--accent-color); margin-top: 1rem;"></i>
